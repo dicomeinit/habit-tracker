@@ -1,6 +1,5 @@
 import requests
-import datetime
-
+from datetime import datetime
 pixela_endpoint = "https://pixe.la/v1/users"
 
 USERNAME = "dianaber"
@@ -37,9 +36,12 @@ headers = {
 
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
+today = datetime.now()
+print(today)
+
 pixel_config = {
-    "date": "20220903",
-    "quantity": "2.30",
+    "date": today.strftime("%Y%m%d"),
+    "quantity": "1.50",
 
 }
 
