@@ -1,10 +1,12 @@
 import requests
 from datetime import datetime
-pixela_endpoint = "https://pixe.la/v1/users"
+
 
 USERNAME = "dianaber"
 TOKEN = "hihd87w9hq9cs0d0cjw093v0d9s93j"
 GRAPH_ID = "graph1"
+
+pixela_endpoint = "https://pixe.la/v1/users"
 
 
 user_params = {
@@ -41,9 +43,25 @@ print(today)
 
 pixel_config = {
     "date": today.strftime("%Y%m%d"),
-    "quantity": "1.50",
-
+    "quantity": input("How many hours did you code today? "),
 }
 
-response = requests.post(url=pixel_creation_endpoint, json=pixel_config, headers=headers)
+# response = requests.post(url=pixel_creation_endpoint, json=pixel_config, headers=headers)
+# print(response.text)
+
+update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today.strftime('%Y%m%d')}"
+
+new_pixel_data = {
+    "quantity": "4.5"
+}
+
+# # PUT
+# response = requests.put(url=update_endpoint, json=new_pixel_data, headers=headers)
+# print(response.text)
+
+delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today.strftime('%Y%m%d')}"
+
+
+# DELETE
+response = requests.delete(url=delete_endpoint, headers=headers)
 print(response.text)
